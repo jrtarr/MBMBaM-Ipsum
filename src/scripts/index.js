@@ -1,15 +1,8 @@
-import { fetchQuotes,QuoteList,buildParagraph } from './generator'
+const form = document.getElementById('template-form')
 
-let clean
-let dirty
-
-const main = async ()=>{
-    const quotes = await fetchQuotes('./quotes.json')
-
-    clean = new QuoteList(quotes.clean,quotes.clean.length)
-    dirty = new QuoteList(quotes.dirty,quotes.dirty.length)
-
-    document.getElementById('quote').textContent = buildParagraph(clean)
-}
-
-main()
+form.addEventListener("submit",(e)=>{
+    e.preventDefault()
+    const pCount = e.target.elements.count.value
+    const nsfw = e.target.elements.nsfw.checked
+    window.location.replace(`paragraph.html#${pCount}&${nsfw}`)
+})

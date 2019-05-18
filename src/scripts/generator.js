@@ -21,19 +21,22 @@ const fetchQuotes = async (url) => {
     }
 }
 
+const endsWithPunctuation = quote => quote.endsWith('?') || quote.endsWith('.') || quote.endsWith('!')
+
 function buildParagraph(quoteArray){
     let wordCount = Math.floor((Math.random()*50)+100)
     let paragraph = ''
     let sentenceWordCount = Math.floor((Math.random()*12)+5)
-    console.log(sentenceWordCount)
+
     while(wordCount > 0){
-        const quote = quoteArray.getQuote()
-        const quoteWordCount = quote.split(' ').length
+        const quote = quoteArray.getQuote() //get the quote to add
+        const quoteWordCount = quote.split(' ').length //get length of the quote to be subtracted from wordCount
+
         if (sentenceWordCount - quoteWordCount > 0){
-            paragraph = paragraph + quote + " "
+            paragraph = paragraph + " " + quote
             sentenceWordCount -= quoteWordCount
-        }else {
-            paragraph = paragraph + ". " + quote
+        } else {
+            endsWithPunctuation(quote) ? paragraph = paragraph + " " + quote : paragraph = paragraph + " " + quote + "."
             sentenceWordCount = Math.floor((Math.random()*14))+6
         }
         wordCount -= quoteWordCount
