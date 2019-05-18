@@ -4,5 +4,10 @@ form.addEventListener("submit",(e)=>{
     e.preventDefault()
     const pCount = e.target.elements.count.value
     const nsfw = e.target.elements.nsfw.checked
-    window.location.replace(`paragraph.html#${pCount}&${nsfw}`)
+    if (pCount <= 0){
+        alert('Please enter a valid amount of paragraphs to generate!')
+        e.target.elements.count.value = ''
+    } else{
+        window.location.replace(`paragraph.html#${pCount}&${nsfw}`)
+    }
 })
