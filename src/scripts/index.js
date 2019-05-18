@@ -1,41 +1,15 @@
-import { fetchQuotes } from './generator'
+import { fetchQuotes,QuoteList,buildParagraph } from './generator'
 
-//Random Number Generator based on array length
-const randomNum = (length) => Math.floor((Math.random()*length)+1)
+let clean
+let dirty
 
-let dirty;
+const main = async ()=>{
+    const quotes = await fetchQuotes('./quotes.json')
 
-dirty = fetchQuotes('./quotes.json').then((response)=> dirty = await response.quotes.dirty)
+    clean = new QuoteList(quotes.clean,quotes.clean.length)
+    dirty = new QuoteList(quotes.dirty,quotes.dirty.length)
 
-// console.log(quotes.clean)
+    document.getElementById('quote').textContent = buildParagraph(clean)
+}
 
-// const clean = {
-//     quotes: quotes.clean,
-//     length: quotes.clean.length,
-//     getWord(){
-//         const index = randomNum(this.length)
-//         const word = this.quotes[index]
-//         console.log(word)
-//         return word
-//     }
-// }
-// const dirty = {
-//     quotes: quotes.dirty,
-//     length: quotes.dirty.length,
-//     getWord(){
-//         const index = randomNum(this.length)
-//         const word = this.quotes[index]
-//         console.log(word)
-//         return word
-//     }
-// }
-
-// console.log(clean)
-// console.log(dirty)
-
-
-
-// response.quotes.clean.forEach((quote)=>{clean.quotes.push(quote)})
-// clean.length = clean.quotes.length
-// response.quotes.dirty.forEach((quote)=>{dirty.quotes.push(quote)})
-// dirty.length = dirty.quotes.length
+main()
