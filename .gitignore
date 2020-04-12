@@ -5,6 +5,18 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
+/app/logs
+/app/*.log
+/app/npm-debug.log*
+/app/yarn-debug.log*
+/app/yarn-error.log*
+/app/lerna-debug.log*
+/web/logs
+/web/*.log
+/web/npm-debug.log*
+/web/yarn-debug.log*
+/web/yarn-error.log*
+/web/lerna-debug.log*
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
@@ -38,6 +50,8 @@ bower_components
 build/Release
 
 # Dependency directories
+/app/node_modules
+/web/node_modules
 node_modules/
 jspm_packages/
 
@@ -86,3 +100,6 @@ typings/
 
 # DynamoDB Local files
 .dynamodb/
+
+#Additional Files
+/app/keys.js
